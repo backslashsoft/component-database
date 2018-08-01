@@ -2,6 +2,7 @@
 
 namespace Backslash\Database;
 
+use Backslash\Database\Exceptions\DatabaseException;
 use Business\Enums\PermissionsEnum;
 use Business\Enums\UserStatusTypesEnum;
 use Business\Exceptions\EnumException;
