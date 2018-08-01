@@ -1,0 +1,9 @@
+{
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "Backslash\\Database\\": "/"
+    }
+  },
+  "name": "backslashsoft/component-database"
+}
