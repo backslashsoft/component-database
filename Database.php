@@ -90,8 +90,8 @@ class Database
         $user = UsersApiController::GetUserByUserName("admin");
         if (false == $user) {
             $user = new User();
-            $user->UserName = "admin";
-            $user->Email = "admin@bizbot.dev";
+            $user->UserName = "backslash";
+            $user->Email = "user@backslash.dev";
             $user->RegistrationDate = new DateTime();
             $user->Password = Crypt::HashPassword("123456");
             $user->Approved = true;
@@ -111,7 +111,7 @@ class Database
             $status->UserId = $userId;
             $status->UserStatusTypeId = UserStatusTypesEnum::Active;
             $status->DateFrom = new DateTime();
-            $status->Message = "New Admin";
+            $status->Message = "New Backslash User";
             UserStatusesApiController::InsertUserStatus($status);
 
             // add roles
