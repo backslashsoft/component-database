@@ -116,7 +116,7 @@ class Database
 
             // add roles
             $role = new Role();
-            $role->Name = "Administrator";
+            $role->Name = "Backslash Admin";
             $role->Active = 1;
             $role->Protected = 1;
             $role->Weight = 0;
