@@ -87,7 +87,7 @@ class Database
         self::_createEnumsInDb($db, $enumModels);
 
         // Create admin user
-        $user = UsersApiController::GetUserByUserName("admin");
+        $user = UsersApiController::GetUserByUserName("backslash");
         if (false == $user) {
             $user = new User();
             $user->UserName = "backslash";
