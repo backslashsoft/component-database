@@ -3,7 +3,6 @@
 namespace Backslash\Database;
 
 use Backslash\Database\Exceptions\DatabaseException;
-use Backslash\Resolver\DependencyResolver;
 use Business\Enums\PermissionsEnum;
 use Business\Enums\UserStatusTypesEnum;
 use Business\Exceptions\EnumException;
@@ -29,7 +28,6 @@ class Database
     const ENUM_PATH = ROOT_PATH . "/Business/Enums/";
     const ENUM_NAMESPACE = "Business\Enums\\";
 
-    private static $_resolvers = [];
     private static $_databases = null;
 
     public static function getInstance($name = 'default')
@@ -56,21 +54,10 @@ class Database
         }
     }
 
-    /**
-     * @param DependencyResolver $resolver
-     */
-    public static function addResolver(DependencyResolver $resolver)
-    {
-        static::$_resolvers[] = $resolver;
-    }
-
     public static function install()
     {
 
-        $modelsNamespaces = [];
-        foreach (static::$_resolvers as $resolver) {
-            $modelsNamespaces = array_merge($modelsNamespaces, $resolver->Resolve());
-        }
+        $modelsNamespaces = UserManagementDependencyResolver::getInstance()->Map();
 
         if (static::$_databases == null) {
             static::_construct();
@@ -100,7 +87,7 @@ class Database
         self::_createEnumsInDb($db, $enumModels);
 
         // Create admin user
-        $user = UsersApiController::GetUserByUserName("backslash");
+        $user = UsersApiController::GetUserByUserName("admin");
         if (false == $user) {
             $user = new User();
             $user->UserName = "backslash";
